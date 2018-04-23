@@ -1,11 +1,11 @@
-require_relative 'players'
+require_relative 'player'
 
 
 class Game
   attr_reader :x, :o
 
   def create_players
-    @x = Players.new
-    @o = Players.new
+    @x = Player.new
+    @o = Player.new
   end
 end

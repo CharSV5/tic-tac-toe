@@ -5,11 +5,11 @@ describe 'Game' do
       subject {Game.new}
       it 'creates a new player called x' do
         subject.create_players
-        expect(subject.o).to be_a Players
+        expect(subject.o).to be_a Player
       end
       it 'creates a new player called o' do
         subject.create_players
-        expect(subject.o).to be_a Players
+        expect(subject.o).to be_a Player
       end
   end
 end
