@@ -5,13 +5,10 @@ require_relative 'board'
 class Game
   attr_reader :x, :o, :turn, :board
 
-  def initialize
-    @turn = nil
-  end
-
   def create_players
     @x = Player.new('x')
     @o = Player.new('o')
+    @turn = @x
   end
 
   def create_board
