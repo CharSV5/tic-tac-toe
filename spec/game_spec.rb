@@ -24,8 +24,7 @@ describe 'Game' do
   describe '#play' do
     it 'lets a player play a turn' do
       subject.create_players
-      board = double('board')
-      allow(board).to receive(:start).and_return([1, 2, 3, 4, 5, 6, 7, 8, 9])
+      board = double('board', :start => [1, 2, 3, 4, 5, 6, 7, 8, 9])
       subject.create_board(board)
       subject.play(3)
       expect(subject.board.start).to eq [1, 2, 'x', 4, 5, 6, 7, 8, 9]
