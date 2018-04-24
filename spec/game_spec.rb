@@ -12,6 +12,7 @@ describe 'Game' do
       expect(subject.o).to be_a Player
     end
   end
+  # This needs fxing, turn equals both subject.x and subject.o
   describe '#switch_player_turn' do
     let(:turn) { double("turn") }
     it 'switches the turn of the player' do
@@ -20,5 +21,14 @@ describe 'Game' do
       expect(subject.turn).to eq subject.o
     end
   end
-  describe ''
+  describe '#play' do
+    let(:turn) { double("turn") }
+    it 'lets a player play a turn' do
+      subject.create_players
+      subject.create_board
+      allow(turn).to receive(:name).and_return('x')
+      subject.play(3)
+      expect(subject.board.start).to eq [1, 2, 'x', 4, 5, 6, 7, 8, 9]
+    end
+  end
 end

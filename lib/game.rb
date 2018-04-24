@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'board'
 
 
 class Game
@@ -9,8 +10,8 @@ class Game
   end
 
   def create_players
-    @x = Player.new
-    @o = Player.new
+    @x = Player.new('x')
+    @o = Player.new('o')
   end
 
   def create_board
@@ -29,8 +30,13 @@ class Game
     end
   end
 
-  def player_x_turn?
-    @turn == @x
+  # def player_x_turn?
+  #   @turn == @x
+  # end
+
+  def play(field)
+    i = field - 1
+    @board.start[i] = @turn.name
   end
 
 end
