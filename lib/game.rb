@@ -11,8 +11,8 @@ class Game
     @turn = @x
   end
 
-  def create_board
-    @board = Board.new
+  def create_board(board = Board.new)
+    @board = board
   end
 
   def start_game
@@ -35,5 +35,4 @@ class Game
     i = field - 1
     @board.start[i] = @turn.name
   end
-
 end
