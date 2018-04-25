@@ -1,7 +1,6 @@
 require_relative 'player'
 require_relative 'board'
 
-
 class Game
   attr_reader :x, :o, :turn, :board
 
@@ -20,19 +19,24 @@ class Game
   end
 
   def switch_player_turn
-    if @turn == @x
-      @turn = @o
-    else
-      @turn = @x
-    end
+    @turn =
+      if @turn == @x
+        @o
+      else
+        @x
+      end
   end
-
-  # def player_x_turn?
-  #   @turn == @x
-  # end
 
   def play(field)
     i = field - 1
     @board.start[i] = @turn.name
+    @turn.record.record_play(field)
+  end
+
+  def winner?
+    @win = @board.combinations.map do |comb|
+      @turn.record.scoring.final.include?(comb)
+    end
+    @win.include?(true)
   end
 end
