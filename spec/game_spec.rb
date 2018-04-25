@@ -29,20 +29,28 @@ describe 'Game' do
       expect(subject.board.start).to eq [1, 2, 'x', 4, 5, 6, 7, 8, 9]
     end
   end
+  before(:each) do
+    board = double('board')
+    allow(board).to receive_messages(start: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      combinations: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8],
+                       [3, 6, 9], [1, 5, 9], [3, 5, 7]])
+    subject.create_board(board)
+    subject.x.create_record
+    subject.play(1)
+    subject.play(4)
+    subject.play(7)
+    subject.x.record.create_scoring
+    subject.x.record.scoring.check
+  end
   describe '#winner?' do
     it 'knows when someone wins' do
-      board = double('board')
-      allow(board).to receive_messages(start: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        combinations: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8],
-                         [3, 6, 9], [1, 5, 9], [3, 5, 7]])
-      subject.create_board(board)
-      subject.x.create_record
-      subject.play(1)
-      subject.play(4)
-      subject.play(7)
-      subject.x.record.create_scoring
-      subject.x.record.scoring.check
       expect(subject.winner?).to eq true
+    end
+  end
+  describe '#game_over?' do
+    it 'knows when the game is over' do
+      subject.winner?
+      expect(subject.game_over?).to eq true
     end
   end
 end

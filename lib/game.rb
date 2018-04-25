@@ -39,4 +39,8 @@ class Game
     end
     @win.include?(true)
   end
+
+  def game_over?
+    winner?
+  end
 end
