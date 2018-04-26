@@ -34,8 +34,10 @@ class Game
   def play(field)
     unless game_over
       i = field - 1
-      @board.start[i] = @turn.name
-      @turn.record.record_play(field)
+      if @board.start[i].class == Integer
+        @board.start[i] = @turn.name
+        @turn.record.record_play(field)
+      end
     end
   end
 
@@ -45,5 +47,4 @@ class Game
     end
     @game_over = true if @win.include?(true)
   end
-
 end

@@ -1,7 +1,7 @@
 require 'record'
 
 describe 'Record' do
-  subject {Record.new}
+  subject { Record.new }
   describe '#record_play' do
     it 'records the plays to the history array' do
       subject.record_play(2)

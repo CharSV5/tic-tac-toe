@@ -21,23 +21,25 @@ describe 'Game' do
   end
 
   describe '#play' do
-    it 'lets a player play a turn' do
+    before (:each) do
       board = double('board', start: [1, 2, 3, 4, 5, 6, 7, 8, 9])
       subject.create_board(board)
       subject.x.create_record
       subject.play(3)
+    end
+    it 'lets a player play a turn' do
       expect(subject.board.start).to eq [1, 2, 'x', 4, 5, 6, 7, 8, 9]
     end
-    context 'game is over'
-    it 'returns if a person tries to play' do
-
+    context 'player tries to play same field twice'
+    it 'returns nil' do
+      expect(subject.play(3)).to eq nil
     end
   end
   before(:each) do
     board = double('board')
     allow(board).to receive_messages(start: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       combinations: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8],
-                       [3, 6, 9], [1, 5, 9], [3, 5, 7]])
+      [3, 6, 9], [1, 5, 9], [3, 5, 7]])
     subject.create_board(board)
     subject.x.create_record
     subject.play(1)
