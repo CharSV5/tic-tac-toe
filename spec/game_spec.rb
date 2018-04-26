@@ -29,7 +29,7 @@ describe 'Game' do
       expect(subject.board.start).to eq [1, 2, 'x', 4, 5, 6, 7, 8, 9]
     end
     context 'game is over'
-    it 'throws an error if a person tries to play' do
+    it 'returns if a person tries to play' do
 
     end
   end
@@ -56,5 +56,9 @@ describe 'Game' do
       subject.winner?
       expect(subject.game_over).to eq true
     end
+  end
+  it 'causes play to return nil if true' do
+    subject.winner?
+    expect(subject.play(9)).to eq nil
   end
 end
