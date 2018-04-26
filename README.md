@@ -43,3 +43,9 @@ game.x.record.scoring.check   (should be run once the first player plays 3 field
 game.winner?   (will return nil if player x has not won, true if they have)
 
 After game.winner? returns true, game_over also returns true causing game.play to return nil if further attempts are made.
+
+
+To run tests:
+```
+rspec
+```
