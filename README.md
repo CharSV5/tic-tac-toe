@@ -47,5 +47,10 @@ After game.winner? returns true, game_over also returns true causing game.play t
 
 To run tests:
 ```
+bundle install
 rspec
+```
+Simplecov will also provide test coverage. A detailed view of this report is found by running
+```
+open coverage/index.html
 ```
