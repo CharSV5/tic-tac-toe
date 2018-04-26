@@ -2,7 +2,11 @@ require_relative 'player'
 require_relative 'board'
 
 class Game
-  attr_reader :x, :o, :turn, :board
+  attr_reader :x, :o, :turn, :board, :game_over
+
+  def initialize
+    @game_over = false
+  end
 
   def create_players
     @x = Player.new('x')
@@ -28,19 +32,18 @@ class Game
   end
 
   def play(field)
-    i = field - 1
-    @board.start[i] = @turn.name
-    @turn.record.record_play(field)
+    unless game_over
+      i = field - 1
+      @board.start[i] = @turn.name
+      @turn.record.record_play(field)
+    end
   end
 
   def winner?
     @win = @board.combinations.map do |comb|
       @turn.record.scoring.final.include?(comb)
     end
-    @win.include?(true)
+    @game_over = true if @win.include?(true)
   end
 
-  def game_over?
-    winner?
-  end
 end

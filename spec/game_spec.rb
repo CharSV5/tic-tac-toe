@@ -28,6 +28,10 @@ describe 'Game' do
       subject.play(3)
       expect(subject.board.start).to eq [1, 2, 'x', 4, 5, 6, 7, 8, 9]
     end
+    context 'game is over'
+    it 'throws an error if a person tries to play' do
+
+    end
   end
   before(:each) do
     board = double('board')
@@ -47,10 +51,10 @@ describe 'Game' do
       expect(subject.winner?).to eq true
     end
   end
-  describe '#game_over?' do
+  describe 'game_over' do
     it 'knows when the game is over' do
       subject.winner?
-      expect(subject.game_over?).to eq true
+      expect(subject.game_over).to eq true
     end
   end
 end
