@@ -3,6 +3,8 @@ env:
 - CC_TEST_REPORTER_ID=J6hDxbv9nwSZAv49sV2qgA
 
 language: ruby
-
+before_install:
+  - rvm get head
+  - gem install bundler 
 rvm:
   - 2.4.1
